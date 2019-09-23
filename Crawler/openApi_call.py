@@ -10,25 +10,6 @@ class MiseAPI:
 
         return url
 
-    # def print_air_info(self, tmp_data):
-    #     coValue = tmp_data['coValue']
-    #     pm10Value = tmp_data['pm10Value']
-    #     pm25Value = tmp_data['pm25Value']
-    #
-    #     if coValue == '':
-    #         coValue = '0'
-    #     elif pm10Value == '':
-    #         pm10Value = '0'
-    #     elif pm25Value == '':
-    #         pm25Value = '0'
-    #
-    #     print('------------------------------------------------')
-    #     print('area: ', tmp_data['cityName'])
-    #     print('일산화탄소 농도: ', coValue)
-    #     print('미세먼지(pm10) 농도:', pm10Value)
-    #     print('초미세먼지(pm25) 농도:', pm25Value)
-
-
     def air_info(self, tmp_data):
         coValue = tmp_data['coValue']
         pm10Value = tmp_data['pm10Value']
