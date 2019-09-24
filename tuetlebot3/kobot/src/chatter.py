@@ -7,9 +7,8 @@ from firebase_admin import credentials
 from firebase_admin import db
 from kobot.msg import Msg
 
-# global x1, y1, x2, y2, x3, y3
-global sector_num, s1_pm100, s2_pm100, s3_pm100
-global sector_manual, cooking_mode
+global sector_num
+global auto_area, cooking_mode, manual_area, manual_btn
 
 # Firebase Realtime DB 연동
 # Firebase Realtime DB json파일 경로
@@ -23,7 +22,8 @@ firebase_admin.initialize_app(cred,{
 # 어디로 이동해야하는지 확인하는 함수
 def sector_chk():
     # 80보다 클때만 실행
-    global s1_pm100, s2_pm100, s3_pm100, sector_num
+    global sector_num
+    global auto_area, cooking_mode, manual_area, manual_btn
     sector_num = 0
     arr = [s1_pm100, s2_pm100, s3_pm100]
     max_num = max(arr)
@@ -35,24 +35,22 @@ def sector_chk():
 # 불러오는 값으로는 각 위치별 좌표와 위치별 미세먼지값
 # 그리고 요리모드유무와 수동으로 이동좌표를 받아온다.
 def db_chk():
-    # global x1, y1, x2, y2, x3, y3
-    global sector_num, s1_pm100, s2_pm100, s3_pm100
-    global sector_manual, cooking_mode
+    global sector_num
+    global auto_area, cooking_mode, manual_area, manual_btn
 
     # 미세먼지 변수
-    pm1 = db.reference('u_data/pm/s1')
-    pm2 = db.reference('u_data/pm/s2')
-    pm3 = db.reference('u_data/pm/s3')
+    auto_area_db = db.reference('mode/auto_area')
+    cooking_mode_db = db.reference('mode/cooking_mode')
+    manual_area_db = db.reference('mode/manual_area')
+    manual_btn_db = db.reference('mode/manual_btn')
 
-    s1_pm25, s1_pm100 = map(float, pm1.get().split())
-    s2_pm25, s2_pm100 = map(float, pm2.get().split())
-    s3_pm25, s3_pm100 = map(float, pm3.get().split())
-
-    # 수동이동 여부와 요리의 유무
-
-
+    auto_area = auto_area_db.get()
+    cooking_mode = cooking_mode_db.get()
+    manual_area = manual_area_db.get()
+    manual_btn = manual_btn_db.get()
+    
 def pose_msg():
-    global x1, y1, x2, y2, x3, y3, sector_num
+    global sector_num
 
     # 퍼블리셔 및 메시지 생성
     pub_pose = rospy.Publisher("pose", Msg, queue_size=1000)
@@ -76,12 +74,6 @@ def pose_msg():
         msg.sector_number = sector_num
         
         # 값 확인
-        # rospy.loginfo(msg.x1)
-        # rospy.loginfo(msg.y1)
-        # rospy.loginfo(msg.x2)
-        # rospy.loginfo(msg.y2)
-        # rospy.loginfo(msg.x3)
-        # rospy.loginfo(msg.y3)
         rospy.loginfo("sengind")
 
         # 값 퍼블리셔
