@@ -74,12 +74,6 @@ void check_sector()
 
 void callbackpose(const kobot::Msg::ConstPtr& msg)
 {
-  s1_x = msg->x1;
-  s1_y = msg->y1;
-  s2_x = msg->x2;
-  s2_y = msg->y2;
-  s3_x = msg->x3;
-  s3_y = msg->y3;
   sector_number = msg->sector_number;
   ROS_INFO("sector_number : [%f]", msg->sector_number);
 }

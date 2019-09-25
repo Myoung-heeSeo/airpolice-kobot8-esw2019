@@ -24,18 +24,16 @@ def sector_chk():
     # 80보다 클때만 실행
     global sector_num
     global auto_area, cooking_mode, manual_area, manual_btn
-    sector_num = 0
-    arr = [s1_pm100, s2_pm100, s3_pm100]
-    max_num = max(arr)
-    if(max_num>80):
-        idx = arr.index(max_num)
-        sector_num = idx + 1
+    if cooking_mode == 1:
+        sector_num = 1
+    elif manual_btn == 1:
+        sector_num = manual_area
+    else:
+        sector_num = auto_area
 
 # DB에서 값을 불러오는 함수
-# 불러오는 값으로는 각 위치별 좌표와 위치별 미세먼지값
 # 그리고 요리모드유무와 수동으로 이동좌표를 받아온다.
 def db_chk():
-    global sector_num
     global auto_area, cooking_mode, manual_area, manual_btn
 
     # 미세먼지 변수
@@ -65,15 +63,10 @@ def pose_msg():
         # db값 체크
         db_chk()
         sector_chk()
-        msg.x1 = x1
-        msg.y1 = y1
-        msg.x2 = x2
-        msg.y2 = y2
-        msg.x3 = x3
-        msg.y3 = y3
         msg.sector_number = sector_num
         
         # 값 확인
+        rospy.loginfo(sector_num)
         rospy.loginfo("sengind")
 
         # 값 퍼블리셔
