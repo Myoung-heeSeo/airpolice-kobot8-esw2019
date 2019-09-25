@@ -3,7 +3,7 @@ Embeded Software contest: Smart Home
 
 ## Project: Air police
 - Affiliation: Kookmin Univ.
-- Team leader: Myeonghee Seo
+- Team leader: Myounghee Seo
 - Team members: Myeongjin Kim, Daeyoung park, Jeongha Lee 
 
 ### Poli
