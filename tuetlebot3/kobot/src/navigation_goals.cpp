@@ -13,7 +13,7 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 float dx, dy;
 int sector_number;
 float sector_x, sector_y;
-float s1_x, s1_y, s2_x, s2_y, s3_x, s3_y;
+float s0_x = 0, s0_y = 0, s1_x, s1_y, s2_x, s2_y;
 float current_x = 0, current_y = 0;
 char current_number = 0;
 
@@ -25,8 +25,8 @@ void check_sector()
     }
     //기본자리
     else if(sector_number == 0){
-      sector_x = 0;
-      sector_y = 0;
+      sector_x = s0_x;
+      sector_y = s0_y;
       dx= current_x - sector_x;
       dy = current_y - sector_y;
       current_x = sector_x;
@@ -58,17 +58,6 @@ void check_sector()
       current_y = sector_y;
       current_number = 2;
       ROS_INFO("move sector 2");
-    }
-        
-    else if(sector_number == 3){
-      sector_x = s3_x;
-      sector_y = s3_y;
-      dx = current_x - sector_x;
-      dy = current_y - sector_y;
-      current_x = sector_x;
-      current_y = sector_y;
-      current_number = 3;
-      ROS_INFO("move sector 3");
     }
 }
 
