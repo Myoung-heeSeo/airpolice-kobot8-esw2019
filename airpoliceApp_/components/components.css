@@ -1,0 +1,17 @@
+.center{
+    text-align: center;
+}
+
+.Menu{
+    padding-top: 200px;
+}
+
+.App-logo {
+	display: inline;
+}
+
+.Menu-icon{
+    margin: 0px 60px 0px 60px;
+    width: 100px;
+    display: inline;
+}

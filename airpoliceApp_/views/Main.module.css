@@ -1,0 +1,24 @@
+.Main-status {
+    padding-top: 2em;
+}
+/* 
+.Header {
+    padding-top: 100px;
+    padding-bottom: 100px;
+} */
+
+.Icon-location {
+    width: 100px;
+}
+
+.Main-weatherbox{
+    width: 80%;
+    height: 80%;
+}
+
+ToastHeader{
+    background-color: rgb(166, 230, 255);
+    color: rgb(222, 227, 230);
+    /* color: rgb(220, 239, 245) */
+}
+

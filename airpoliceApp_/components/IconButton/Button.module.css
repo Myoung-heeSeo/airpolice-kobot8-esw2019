@@ -1,0 +1,28 @@
+.button {
+    margin: 6px;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid rgb(85, 150, 235);
+    box-shadow: 1px 1px 3px rgb(166, 230, 255);
+    height: 60px;
+    font-size: 20px;
+  }
+  
+  .small {
+    border-radius: 4px;
+    height: 45px;
+    font-size: 15px;
+  }
+  
+  .pressed {
+    box-shadow: none;
+  }
+  
+  .minWidth {
+    min-width: 120px;
+  }
+  
+  .minWidth.small {
+    min-width: 90px;
+  }
+  
