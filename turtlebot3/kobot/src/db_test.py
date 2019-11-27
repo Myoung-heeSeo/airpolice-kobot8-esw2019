@@ -9,8 +9,8 @@ ref = db.reference('mode')
 tmp = ref.get()
 
 cooking_mode = tmp['cooking_mode']
-manual = tmp['manual']
-auto = tmp['auto']
+manual = tmp['manual_btn']
+auto = tmp['auto_area']
 
 
-print(mode)
+print(cooking_mode)

@@ -12,11 +12,11 @@ global auto_area, cooking_mode, manual_area, manual_btn
 
 # Firebase Realtime DB 연동
 # Firebase Realtime DB json파일 경로
-cred = credentials.Certificate('/home/kmucs/Downloads/ebsw.json')
+cred = credentials.Certificate('/home/kmucs/Downloads/airpolice-key.json')
 
 # Firebase Realtime DB링크
 firebase_admin.initialize_app(cred,{
-    'databaseURL' : 'https://ebsw-283e9.firebaseio.com/'
+    'databaseURL': 'https://airpolice-123de.firebaseio.com/'
 })
 
 # 어디로 이동해야하는지 확인하는 함수
@@ -25,7 +25,7 @@ def sector_chk():
     global sector_num
     global auto_area, cooking_mode, manual_area, manual_btn
     if cooking_mode == 1:
-        sector_num = 1
+        sector_num = 0
     elif manual_btn == 1:
         sector_num = manual_area
     else:
@@ -37,15 +37,13 @@ def db_chk():
     global auto_area, cooking_mode, manual_area, manual_btn
 
     # 미세먼지 변수
-    auto_area_db = db.reference('mode/auto_area')
-    cooking_mode_db = db.reference('mode/cooking_mode')
-    manual_area_db = db.reference('mode/manual_area')
-    manual_btn_db = db.reference('mode/manual_btn')
+    tmp = db.reference('mode')
 
-    auto_area = auto_area_db.get()
-    cooking_mode = cooking_mode_db.get()
-    manual_area = manual_area_db.get()
-    manual_btn = manual_btn_db.get()
+    mode = tmp.get()
+    cooking_mode = mode['cooking_mode']
+    auto_area = mode['auto_area']
+    manual_btn = mode['manual_btn']
+    manual_area = mode['manual_area']
     
 def pose_msg():
     global sector_num

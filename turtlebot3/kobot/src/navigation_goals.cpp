@@ -13,7 +13,7 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 float dx, dy;
 int sector_number;
 float sector_x, sector_y;
-float s0_x = 0, s0_y = 0, s1_x, s1_y, s2_x, s2_y;
+float s0_x = 0, s0_y = 0, s1_x = -0.45, s1_y = 0, s2_x = -0.45, s2_y = -0.55;
 float current_x = 0, current_y = 0;
 char current_number = 0;
 
@@ -110,6 +110,7 @@ int main(int argc, char** argv){
     while(!ac.waitForServer(ros::Duration(5.0))){
       ROS_INFO("Waiting for the move_base action server to come up");
     }
+    
     move_base_msgs::MoveBaseGoal goal;
     //we'll send a goal to the robot to move 1 meter forward
     goal.target_pose.header.frame_id = "base_link";
