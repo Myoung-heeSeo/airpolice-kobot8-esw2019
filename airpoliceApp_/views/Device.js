@@ -25,7 +25,7 @@ class Device extends React.Component{
 
 	componentDidMount(){
 		const cookRef = firebase.database().ref().child('mode').child('manual_btn');
-		
+
 		cookRef.on('value', snap => {
 		  console.log("hihihihhiiiiiiiiiiiiiii")
 		  if(snap.val() == 1){
@@ -38,14 +38,14 @@ class Device extends React.Component{
 			  switched: false
 			});
 		  }
-		  
+
 		  console.log(this.state.switched);
-	
+
 		});
-	
+
 	  }
-	
-	  toggleSwitch = () => { 
+
+	  toggleSwitch = () => {
 		this.setState(prevState => {
 		  return {
 			switched: !prevState.switched
@@ -53,7 +53,7 @@ class Device extends React.Component{
 		});
 		firebase.database().ref('mode/manual_btn').set(this.state.switched?0:1);
 		// console.log(this.state.switched?0:1);
-		
+
 	  };
 
 
@@ -80,20 +80,20 @@ class Device extends React.Component{
 
 		}
 	}
-	
-	
+
+
 	render(){
-		
+
 		const btnStyle={
 			width: '8em',
 			height: '2em',
 			marginTop: '0.5em'
 		}
-		const manualStyle={marginTop: "1em", marginLeft: "5em"}	
+		const manualStyle={marginTop: "1em", marginLeft: "5em"}
 
 		return(
-			<div className="all"> 
-            
+			<div className="all">
+
 				<div className="Container">
 					<Row>
 						<Col xs={{size:6}}>
@@ -105,24 +105,24 @@ class Device extends React.Component{
 								<hr/>
 							</Row>
 							<Row>
-								<span style={{fontSize: '0.7em'}}>퓨리케어 0393860-38174639</span>
+								<span style={{fontSize: '0.7em'}}>LG PuriCare Mini AP139MWA</span>
 							</Row>
 							<Row>
 								<span className="Contentname" style={{fontSize: "1em", paddingTop:"1em", paddingBottom: "0.5em"}}>수동 제어</span><i style={manualStyle}><Switch id="manualswitch" onClick={this.toggleSwitch} on={this.state.switched}/></i>
 								<hr/>
 							</Row>
-							<Row> 
+							<Row>
 								<Button onClick={() => this.manual_turtlebot(0)} disabled={!this.state.switched} color="secondary" style={btnStyle}>거실</Button>
 							</Row>
-							<Row> 
+							<Row>
 								<Button onClick={() => this.manual_turtlebot(1)} disabled={!this.state.switched} color="secondary" style={btnStyle}>주방</Button>
 							</Row>
-							<Row> 
+							<Row>
 								<Button onClick={() => this.manual_turtlebot(2)} disabled={!this.state.switched} color="secondary" style={btnStyle}>방 1</Button>
 							</Row>
 
-	
-							
+
+
 						</Col>
 					</Row>
 				</div>

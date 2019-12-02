@@ -20,7 +20,6 @@ import ViewManager from '@enact/ui/ViewManager/ViewManager';
 import AirHome from './AirHome';
 import View from './View';
 import LunaNotification from '../views/LunaNotification';
-import Lunacall from '../views/Lunacall';
 import LS2Request from '@enact/webos/LS2Request';
 
 const views = [
@@ -58,7 +57,7 @@ const AppBase = kind({
 		console.log("app.js app.js app.js")
 		return (
 				<div>
-					{/* <LunaNotification/> */}
+					<LunaNotification/>
 					<Row style={{backgroundColor: "rgb(221, 241, 253)"}}>
 						<Headname/>
 					</Row>
@@ -69,7 +68,7 @@ const AppBase = kind({
 								{views.map((view) => view.title)}
 							</Group>
 							</Cell>
-						</Col> 
+						</Col>
 						<Col>
 							<Cell component={ViewManager} index={index}>
 								{views.map((view, i) => (
@@ -79,10 +78,10 @@ const AppBase = kind({
 						</Col>
 					</Row>
 				</div>
-						
+
 			// 	<Layout {...rest}>
 			// 	<Cell component={Headname} size="30%">dddd</Cell>
-				
+
 			// 	<Cell component={ScrollerComponent} size="20%">
 			// 		<Group childComponent={Item} itemProps={{className: css.navItem}} onSelect={handleChange} select={'radio'} selected={index}>
 			// 			{views.map((view) => view.title)}
@@ -94,7 +93,7 @@ const AppBase = kind({
 			// 		))}
 			// 	</Cell>
 			// </Layout>
-			
+
 
 		);
 	}

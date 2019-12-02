@@ -8,29 +8,29 @@ import Roomgraph from '../components/Roomgraph';
 
 class Room extends React.Component{
     render(){
-        const RoomName=["주방", "방1", "방2"];
+        const RoomName=["주방", "거실", "방1"];
         const Graphstyle={
             height: '50%',
             width: '85%',
-            
+
         }
         return(
             <div className="Container">
-                <Col xs={{size: 10, offset: 1}}> 
-                    
-                  
+                <Col xs={{size: 10, offset: 1}}>
+
+
                         <Row>
                             <Col>
                             <h4 className="Contentname">{RoomName[this.props.children]}</h4>
                             </Col>
-                            
+
                         </Row>
                         <Roomgraph>{this.props.children}</Roomgraph>
 
-                        
+
                         <br/>
-                
-                    
+
+
                 </Col>
             </div>
         )

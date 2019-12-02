@@ -60,12 +60,12 @@ class AirboxOutside extends Component {
 
     tempRef.on('value', snap => {
       this.setState({
-        temp: snap.val() 
+        temp: snap.val()
       });
       console.log(this.state.temp);
     });
   }
-  
+
 
   render() {
     this.props.coords ?
@@ -94,7 +94,7 @@ class AirboxOutside extends Component {
       textAlign: 'center',
       // top: '1em'
     }
-    
+
     const hStyle={
       // fontWeight: "bold",
       color: "rgb(168, 164, 164)",
@@ -113,48 +113,24 @@ class AirboxOutside extends Component {
     }
     else if( this.state.mise) condition = "좋음";
 
-    // showNotification(condition);
-
-    // function showNotification(condition){
-    //   if(condition){
-    //     var finedust="good!";
-    //   }
-    //   new LS2Request().send({
-		// 		service: "luna://com.webos.notification/",
-		// 	  method:"createAlert",
-		// 	  parameters:{
-		// 		  // title: 'Gas Notification',
-		// 		  "message": 'DangerDanger!!!'
-		// 	  },
-    //     onSuccess:() => {
-    //       console.log("success!!!!!!!!!!!")
-    //     },
-    //     onFailure:(args) => {
-    //       console.log("fail!!!!!!!!!!!")
-    //       console.log(args.errorText)
-    //     },
-    //     onComplete:() => {
-    //       console.log("complete!!!!!!!!!!!")
-    //     }
-		// 	});
-    // }
+    console.log(condition);
 
     return (
       <div>
         <h6>실외 air - {this.state.now_location}</h6>
         <div className="airbox" style={boxstyle}>
-          {this.state.mise? <Row>
+            {(this.state.mise&&this.state.humid&&this.state.temp)? <Row>
             {/* {this.state.mise}, {this.state.ultra} */}
             {condition == '매우나쁨' && <Col style={FIconStyle}><img src={crazy} width="50%" /> <h6 style={hStyle}>{condition}</h6></Col>}
             {condition == '나쁨' && <Col style={FIconStyle}><img src={bad} width="50%"/> <h6 style={hStyle}>{condition}</h6></Col>}
-            {condition == '보통나쁨' && <Col style={FIconStyle}><img src={normal} width="50%" /> <h6 style={hStyle}>{condition}</h6></Col>}
-            {condition == '좋음' && <Col style={FIconStyle}><img src={good} width="50%"/> <h6 style={hStyle}>{condition}</h6></Col>} 
+            {condition == '보통' && <Col style={FIconStyle}><img src={normal} width="50%" /> <h6 style={hStyle}>{condition}</h6></Col>}
+            {condition == '좋음' && <Col style={FIconStyle}><img src={good} width="50%"/> <h6 style={hStyle}>{condition}</h6></Col>}
 
             <Col style={IconStyle}><WiThermometer size="70%" color="rgba(136, 233, 141, 0.829)" /><h6 style={{color: 'rgb(168, 164, 164)'}}>{this.state.temp}</h6></Col>
-            <Col style={IconStyle}><WiHumidity size="70%" color="skyblue" /><h6 style={{color: 'rgb(168, 164, 164)'}}>{this.state.humid} </h6></Col>  
-          </Row> : <Row style={{height: '80%', width:'80%', textAlign:'center'}}><Spinner>Loading...</Spinner></Row>          
-        }
-          
+            <Col style={IconStyle}><WiHumidity size="70%" color="skyblue" /><h6 style={{color: 'rgb(168, 164, 164)'}}>{this.state.humid} </h6></Col>
+            </Row> : <Row style={{height: '80%', width:'80%', textAlign:'center'}}><Col xs={{offset: 5}}><Spinner>Loading...</Spinner></Col></Row>
+            }
+
 
         </div>
       </div>
